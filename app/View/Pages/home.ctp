@@ -12,7 +12,7 @@
 		Poll
 	</li>
 	<li>
-		Section
+		<a href="/section">Section</a>
 	</li>
 	<li>
 		Tags
