@@ -17,6 +17,14 @@ class Section extends AppModel {
 		return $data;
 	}
 
+    public function beforeSave($data) {
+        if (!$data[$this->alias]['sub_id']) {
+            $data[$this->alias]['sub_id'] = 0;
+        }
+
+        return $data;
+    }
+
 	public function getParentSection($sub_id){
 		$parent_section = $this->find('first', array('fields' => array('name') ,'conditions' => array('id' => $sub_id)));
 
