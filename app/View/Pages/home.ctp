@@ -1,6 +1,6 @@
 <ul>
 	<li>
-		Album
+		<a href="/album">Album</a>
 	</li>
 	<li>
 		Article
