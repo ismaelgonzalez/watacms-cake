@@ -18,7 +18,7 @@
             <?php echo $album['Album']['name']; ?>
         </td>
         <td>
-            <?php echo $album['Album']['section_id']; ?>
+            <?php echo $album['Section']['name']; ?>
         </td>
         <td>
             <a href="/album/edit/<?php echo $album['Album']['id']; ?>"><img src="/img/edit.png" alt="Editar" height="24px" ></a> |

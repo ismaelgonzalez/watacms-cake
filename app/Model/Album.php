@@ -12,4 +12,8 @@ class Album extends AppModel {
             'message' => 'La sección del album es requerida!',
         ),
     );
+
+	public $belongsTo = array(
+		'Section'
+	);
 }
