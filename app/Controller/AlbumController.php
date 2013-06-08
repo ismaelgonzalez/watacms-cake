@@ -54,7 +54,7 @@ class AlbumController extends AppController {
 			if ($this->Album->save($this->data)) {
 				$this->Session->setFlash('Se modific&oacute; el album con exito!', 'default', array('class'=>'message success-message'));
 
-				return $this->redirect('album/index');
+				return $this->redirect('/album/index');
 			}
 		}
 
