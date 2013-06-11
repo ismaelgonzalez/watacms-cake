@@ -7,6 +7,7 @@
         <th>ID</th>
         <th>Album</th>
         <th>Secci&oacute;n</th>
+        <th>Fecha de Publicaci&oacute;n</th>
         <th>&nbsp;</th>
     </tr>
     <?php foreach ($albums as $album) { ?>
@@ -19,6 +20,9 @@
         </td>
         <td>
             <?php echo $album['Section']['name']; ?>
+        </td>
+        <td>
+            <?php echo date("d/m/Y H:i:s", strtotime($album['Album']['published_date'].' '.$album['Album']['published_time'])); ?>
         </td>
         <td>
             <a href="/album/edit/<?php echo $album['Album']['id']; ?>"><img src="/img/edit.png" alt="Editar" height="24px" ></a> |

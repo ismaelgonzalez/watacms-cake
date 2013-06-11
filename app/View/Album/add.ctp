@@ -9,6 +9,8 @@ echo $this->Form->input('section_id', array(
 	'empty' => array(0 => '-- Elige una sección --'),
 ));
 echo $this->Form->input('name', array('label' => 'Nombre'));
+echo $this->Form->input('published_date', array('label' => 'Fecha de Publicaci&oacute;n'));
+echo $this->Form->input('published_time', array('label' => 'Hora de Publicaci&oacute;n'));
 echo $this->Form->submit('Enviar', array('formnovalidate' => true));
 echo $this->Form->end();
 

@@ -13,6 +13,14 @@ echo $this->Form->input('name', array(
 	'label' => 'Nombre',
 	'default' => $album['Album']['name']
 ));
+echo $this->Form->input('published_date', array(
+    'label' => 'Fecha de Publicaci&oacute;n',
+    'default' => $album['Album']['published_date'],
+));
+echo $this->Form->input('published_time', array(
+    'label' => 'Hora de Publicaci&oacute;n',
+    'default' => $album['Album']['published_time'],
+));
 echo $this->Form->submit('Enviar', array('formnovalidate' => true));
 echo $this->Form->end();
 

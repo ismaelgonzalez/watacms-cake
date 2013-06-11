@@ -11,6 +11,10 @@ class Album extends AppModel {
             'rule' => 'notEmpty',
             'message' => 'La sección del album es requerida!',
         ),
+        'published_date' => array(
+            'rule' => 'notEmpty',
+            'message' => 'La fecha de publicación es requerida!',
+        ),
     );
 
 	public $belongsTo = array(
