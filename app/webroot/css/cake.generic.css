@@ -312,9 +312,9 @@ label {
 }
 input, textarea {
 	clear: both;
-	font-size: 140%;
+	font-size: 80%;
 	font-family: "frutiger linotype", "lucida grande", "verdana", sans-serif;
-	padding: 1%;
+	padding: 5px;
 	width:98%;
 }
 select {

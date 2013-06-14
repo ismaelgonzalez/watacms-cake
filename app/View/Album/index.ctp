@@ -1,6 +1,7 @@
 <h2>Administrar Albums</h2>
 
 <h3><a href="/album/add">Agregar un Album nuevo</a></h3>
+<h4><a href="/photo/add">Agregar fotos nuevas</a></h4>
 
 <table class="">
     <tr>
@@ -26,7 +27,9 @@
         </td>
         <td>
             <a href="/album/edit/<?php echo $album['Album']['id']; ?>"><img src="/img/edit.png" alt="Editar" height="24px" ></a> |
-            <img class="img_button" src="/img/delete.png" alt="Borrar" height="24px" onclick="borrar(<?php echo $album['Album']['id']; ?>)">
+            <img class="img_button" src="/img/delete.png" alt="Borrar" height="24px" onclick="borrar(<?php echo $album['Album']['id']; ?>)"> |
+			<a href="/album/view/<?php echo $album['Album']['id']; ?>">Ver Fotos</a> |
+			<a href="/photo/add/<?php echo $album['Album']['id']; ?>">Agregar Fotos</a>
         </td>
     </tr>
     <?php } ?>

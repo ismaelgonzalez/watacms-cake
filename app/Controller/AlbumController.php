@@ -80,8 +80,10 @@ class AlbumController extends AppController {
 
 			return $this->redirect('/album/index');
 		}
+	}
 
-
-
+	public function view($id){
+		$this->autoRender = false;
+		echo "we're gonna view the photos from album $id here";
 	}
 }
