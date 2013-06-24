@@ -18,12 +18,10 @@ class Photo extends AppModel {
 	);
 
 	public function uploadPhotos($data) {
-		//step1 create a folder based on the album_id, only create the folder if it doesn't exist
-		$album_id = $data[$this->alias]['album_id'];
+		$photos = $data;
+		$album_id = $photos[$this->alias]['album_id'];
 
 		$album_dir = WWW_ROOT.'fotos'.DS.$album_id;
-
-		echo $album_dir;
 
 		if(!is_dir($album_dir)) {
 			mkdir($album_dir);
@@ -32,28 +30,42 @@ class Photo extends AppModel {
 		$allowed_types = array('image/gif','image/jpeg','image/pjpeg','image/png');
 
 		for ($i = 1; $i <= 5; $i++) {
-			 if ($data[$this->alias]['pic'.$i]['name'] != '') {	//make sure there is a file to upload
-				 $filename = str_replace(' ', '_', $data[$this->alias]['pic'.$i]['name']);
 
-				 $typeOK = false;
+			if ($photos[$this->alias]['pic'.$i]['name'] != '' && $photos[$this->alias]['pic'.$i]['error'] == 0) {	//make sure there is a file to upload and there is no error
+				$filename = str_replace(' ', '_', $photos[$this->alias]['pic'.$i]['name']);
 
-				 foreach ($allowed_types as $type) {	//check to make sure file type is allowed
-					 if ($type == $data[$this->alias]['pic'.$i]['type']) {
-						 $typeOK = true;
-						 break;
-					 }
-				 }
+				$typeOK = false;
 
-				 if ($typeOK) {	//upload
-					 //step2 upload the photos to this folder
+				foreach ($allowed_types as $type) {	//check to make sure file type is allowed
+					if ($type == $photos[$this->alias]['pic'.$i]['type']) {
+						$typeOK = true;
+						break;
+					}
+				}
 
-				 }
-				 //step3 add in record to db
-			 }
+				if ($typeOK) {	//upload
+					if(!move_uploaded_file($photos[$this->alias]['pic'.$i]['tmp_name'], $album_dir.DS.$filename)) {
+						return false;
+					}
+				}
+
+				//$photo = array();
+				$photo = array(
+					$this->alias => array(
+						'album_id' => $photos[$this->alias]['album_id'],
+						'title' => $photos[$this->alias]['title'.$i],
+						'blurb' => $photos[$this->alias]['blurb'.$i],
+						'pic' => $filename,
+					)
+				);
+
+				$this->create($photo);
+				if (!$this->save($photo)) {
+					error_log(__CLASS__.'/'.__FUNCTION__.' couldnt save data');
+					return false;
+				}
+			}
 		}
-
-
-
-		//step4 return true if all good, false if there were errors
+		return true;
 	}
 }

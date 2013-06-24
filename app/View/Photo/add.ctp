@@ -7,6 +7,7 @@ echo $this->Form->input('album_id', array(
 		$albums
 	),
 	'default' => $album_id,
+	'disabled' => (sizeof($albums) == 1 ? true : false),
 	'empty' => array(0 => '-- Elige un album --'),
 ));
 echo $this->Form->input('pic1', array('label' => 'Foto', 'type' => 'file'));
