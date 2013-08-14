@@ -1,3 +1,4 @@
+<h4>Agregar Secci&oacute;n</h4>
 <?php
 echo $this->Form->create('Section', array('type'=>'post'));
 echo $this->Form->input('sub_id', array(

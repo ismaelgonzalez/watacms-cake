@@ -1,6 +1,6 @@
-<h2>Administrar Secciones</h2>
+<h3>Administrar Secciones</h3>
 
-<h3><a href="/section/add">Agregar una Secci&oacute;n nueva</a></h3>
+<h4><a href="/section/add">Agregar una Secci&oacute;n nueva</a></h4>
 
 <table class="">
 	<tr>
@@ -21,8 +21,8 @@
 			<?php echo $section['Section']['name']; ?>
 		</td>
 		<td>
-			<a href="/section/edit/<?php echo $section['Section']['id']; ?>"><img src="/img/edit.png" alt="Editar" height="24px" ></a> |
-			<img class="img_button" src="/img/delete.png" alt="Borrar" height="24px" onclick="borrar(<?php echo $section['Section']['id']; ?>)">
+			<a href="/section/edit/<?php echo $section['Section']['id']; ?>"><i class="icon-edit"></i></a> |
+			<i class="icon-remove-sign delete" onclick="borrar(<?php echo $section['Section']['id']; ?>)"></i>
 		</td>
 	</tr>
 	<?php } ?>
