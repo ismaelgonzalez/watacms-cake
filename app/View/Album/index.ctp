@@ -1,6 +1,6 @@
-<h2>Administrar Albums</h2>
+<h3>Administrar Albums</h3>
 
-<h3><a href="/album/add">Agregar un Album nuevo</a></h3>
+<h4><a href="/album/add">Agregar un Album nuevo</a></h4>
 
 <table class="">
     <tr>
@@ -25,8 +25,8 @@
             <?php echo date("d/m/Y H:i:s", strtotime($album['Album']['published_date'].' '.$album['Album']['published_time'])); ?>
         </td>
         <td>
-            <a href="/album/edit/<?php echo $album['Album']['id']; ?>"><img src="/img/edit.png" alt="Editar" height="24px" ></a> |
-            <img class="img_button" src="/img/delete.png" alt="Borrar" height="24px" onclick="borrar(<?php echo $album['Album']['id']; ?>)">
+            <a href="/album/edit/<?php echo $album['Album']['id']; ?>"><i class="icon-edit"></i></a> |
+			<i class="icon-remove-sign delete" onclick="borrar(<?php echo $album['Album']['id']; ?>)"></i>
         </td>
     </tr>
     <?php } ?>
