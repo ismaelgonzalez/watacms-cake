@@ -1,0 +1,26 @@
+// FLUSH GRIDS 
+
+[class*="span"].flush {
+   margin-left: 0;
+}
+
+.spanXFlush (@index) when (@index > 0) {
+   (~".row .span@{index}.flush") {
+      width: ((@gridColumnWidth+ @gridGutterWidth) * @index);
+   }
+   .spanXFlush(@index - 1);
+}
+
+.spanXFlush (0) {}
+.spanXFlush (@gridColumns);
+
+.spanXFlushFluid (@index) when (@index > 0) {
+   (~".row-fluid .span@{index}.flush") {
+      width: ((@fluidGridColumnWidth+ @fluidGridGutterWidth) * @index);
+   }
+   .spanXFlushFluid(@index - 1);
+}
+
+.spanXFlushFluid (0) {}
+.spanXFlushFluid (@gridColumns);
+

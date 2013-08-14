@@ -1,3 +1,4 @@
+<h4>Editar Secci&oacute;n</h4>
 <?php
 echo $this->Form->create('Section', array('type'=>'post'));
 echo $this->Form->input('id', array('value' => $section['Section']['id']));
