@@ -1,4 +1,4 @@
-<h3>Editar Album</h3>
+<h4>Editar Album</h4>
 <?php
 echo $this->Form->create('Album', array('type'=>'post'));
 echo $this->Form->input('id', array('value' => $album['Album']['id']));

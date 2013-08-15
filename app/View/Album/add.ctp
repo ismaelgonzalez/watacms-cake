@@ -1,4 +1,4 @@
-<h3>Agregar un Album</h3>
+<h4>Agregar un Album</h4>
 <?php
 echo $this->Form->create('Album', array('type'=>'post'));
 echo $this->Form->input('section_id', array(
