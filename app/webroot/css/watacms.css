@@ -57,11 +57,13 @@ body {
     padding: 0;
     float: left;
 }
-tr:hover {
+/*tr:hover {
     background-color: #FFFAF0 !important;
     color: #000 !important;
-}
+}*/
 .delete{
     color: red;
     cursor: pointer;
 }
+.tooltip-inner {background-color: #293C43; color: #fff;}
+.tooltip.top .tooltip-arrow {border-top-color: #293C43;}

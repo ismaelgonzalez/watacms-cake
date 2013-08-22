@@ -31,7 +31,7 @@ class SectionController extends AppController {
 	public function add() {
 		if (!empty($this->data)) {
 			if ($this->Section->save($this->data)) {
-				$this->Session->setFlash('Se agreg&oacute; la nueva secci&oacute;n!', 'default', array('class'=>'message success-message'));
+				$this->Session->setFlash('Se agreg&oacute; la nueva secci&oacute;n!', 'default', array('class'=>'alert alert-success'));
 
 				return $this->redirect('/section/index');
 			}
@@ -48,7 +48,7 @@ class SectionController extends AppController {
 		if (empty($this->data)) {
 			$section = $this->Section->findById($id);
 			if (empty($section)) {
-				$this->Session->setFlash('Record Invalido!');
+				$this->Session->setFlash('Record Invalido!', 'default', array('class'=>'alert alert-error'));
 
 				return $this->redirect('/section');
 			}
@@ -56,7 +56,7 @@ class SectionController extends AppController {
 			$this->set('section', $section);
 		} else {
 			if ($this->Section->save($this->data)) {
-				$this->Session->setFlash('Se modific&oacute; la secci&oacute;n con exito!', 'default', array('class'=>'message success-message'));
+				$this->Session->setFlash('Se modific&oacute; la secci&oacute;n con exito!', 'default', array('class'=>'alert alert-success'));
 
 				return $this->redirect('/section/index');
 			}
@@ -75,11 +75,11 @@ class SectionController extends AppController {
 
 		if (!empty($section)) {
 			$this->Section->delete($id);
-			$this->Session->setFlash('Se borr&oacute; la secci&oacute;n con exito!', 'default', array('class'=>'message success-message'));
+			$this->Session->setFlash('Se borr&oacute; la secci&oacute;n con exito!', 'default', array('class'=>'alert alert-success'));
 
 			return $this->redirect('/section/index');
 		} else {
-			$this->Session->setFlash('No hay secci&oacute;n para borrar!');
+			$this->Session->setFlash('No hay secci&oacute;n para borrar!', 'default', array('class'=>'alert alert-error'));
 
 			return $this->redirect('/section/index');
 		}

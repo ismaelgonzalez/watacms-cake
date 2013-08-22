@@ -35,11 +35,11 @@ class PhotoController extends AppController {
 			//echo '</pre>';
 			//exit();
 			if ($this->Photo->uploadPhotos($this->data)) {
-				$this->Session->setFlash('Se agregaron las nuevas fotos al album!', 'default', array('class'=>'message success-message'));
+				$this->Session->setFlash('Se agregaron las nuevas fotos al album!', 'default', array('class'=>'alert alert-success'));
 
 				return $this->redirect('/album/index');
 			} else {
-				$this->Session->setFlash('Hubo un error al subir la imagen :S');
+				$this->Session->setFlash('Hubo un error al subir la imagen :S', 'default', array('class'=>'alert alert-error'));
 			}
 		}
 	}

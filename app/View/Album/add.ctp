@@ -6,18 +6,31 @@ echo $this->Form->input('section_id', array(
 	'options' => array(
 		$sections
 	),
-	'empty' => array(0 => '-- Elige una sección --'),
+	'empty' => array('-- Elige una sección --'),
 ));
 echo $this->Form->input('name', array('label' => 'Nombre'));
 echo $this->Form->input('published_date', array(
+	'type' => 'text',
 	'label' => 'Fecha de Publicaci&oacute;n',
-	'dateFormat' => 'DMY',
-	'minYear' => date('Y'),
-	'maxYear' => date('Y') + 1,
-
 ));
-echo $this->Form->input('published_time', array('label' => 'Hora de Publicaci&oacute;n'));
+
+$time = $this->Timeoptions->getTimeOptions();
+
+echo $this->Form->input('published_time', array(
+	'label' => 'Hora de Publicaci&oacute;n',
+	'type' => 'select',
+	'options' => array(
+		$time,
+	),
+	'empty' => array(0 => '-- Publicar Ahora --'),
+));
+
 echo $this->Form->submit('Enviar', array('formnovalidate' => true));
 echo $this->Form->end();
 
 ?>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$("#AlbumPublishedDate").datepicker({dateFormat:"yy-mm-dd"});
+	});
+</script>

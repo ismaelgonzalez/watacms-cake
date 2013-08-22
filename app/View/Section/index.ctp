@@ -2,30 +2,34 @@
 
 <h4><a href="/section/add">Agregar una Secci&oacute;n nueva</a></h4>
 
-<table class="">
-	<tr>
-		<th>ID</th>
-		<th>Sub-Seccion</th>
-		<th>Seccion</th>
-		<th>&nbsp;</th>
-	</tr>
-	<?php foreach ($sections as $section) { ?>
-	<tr>
-		<td>
-			<?php echo $section['Section']['id']; ?>
-		</td>
-		<td>
-			<?php echo $section['Section']['parent_section']; ?>
-		</td>
-		<td>
-			<?php echo $section['Section']['name']; ?>
-		</td>
-		<td>
-			<a href="/section/edit/<?php echo $section['Section']['id']; ?>"><i class="icon-edit"></i></a> |
-			<i class="icon-remove-sign delete" onclick="borrar(<?php echo $section['Section']['id']; ?>)"></i>
-		</td>
-	</tr>
-	<?php } ?>
+<table class="table table-striped table-condensed table-hover">
+	<thead>
+		<tr>
+			<th>ID</th>
+			<th>Sub-Seccion</th>
+			<th>Seccion</th>
+			<th>&nbsp;</th>
+		</tr>
+	</thead>
+	<tbody>
+		<?php foreach ($sections as $section) { ?>
+			<tr>
+				<td>
+					<?php echo $section['Section']['id']; ?>
+				</td>
+				<td>
+					<?php echo $section['Section']['parent_section']; ?>
+				</td>
+				<td>
+					<?php echo $section['Section']['name']; ?>
+				</td>
+				<td>
+					<a href="/section/edit/<?php echo $section['Section']['id']; ?>"><i class="icon-edit"></i></a> |
+					<i class="icon-remove-sign delete" onclick="borrar(<?php echo $section['Section']['id']; ?>)"></i>
+				</td>
+			</tr>
+		<?php } ?>
+	</tbody>
 </table>
 
 <?php echo $this->Paginator->numbers(); ?>

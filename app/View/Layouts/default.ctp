@@ -30,11 +30,12 @@ $cakeDescription = __d('cake_dev', 'WATACMS');
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="">
 	<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+	<link href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" rel="stylesheet">
 
 	<?php
 	echo $this->Html->meta('icon');
 
-	echo $this->Html->css('cake.generic');
+	//echo $this->Html->css('cake.generic');
 	echo $this->Html->css('bootstrap');
 	echo $this->Html->css('bootstrap.min');
 	echo $this->Html->css('bootstrap-responsive');
@@ -45,6 +46,7 @@ $cakeDescription = __d('cake_dev', 'WATACMS');
 	echo $this->fetch('css');
 	echo $this->fetch('script');
 	echo $this->Html->script('jquery-1.10.0.min');
+	echo $this->Html->script('jquery-ui-1.10.3.custom.min');
 	echo $this->Html->script('bootstrap');
 	echo $this->Html->script('cakebootstrap');
 	?>

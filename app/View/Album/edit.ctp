@@ -14,14 +14,23 @@ echo $this->Form->input('name', array(
 	'default' => $album['Album']['name']
 ));
 echo $this->Form->input('published_date', array(
-    'label' => 'Fecha de Publicaci&oacute;n',
-    'default' => $album['Album']['published_date'],
+	'type' => 'text',
+	'label' => 'Fecha de Publicaci&oacute;n',
+	'default' => $album['Album']['published_date'],
 ));
+$time = $this->Timeoptions->getTimeOptions();
+
 echo $this->Form->input('published_time', array(
-    'label' => 'Hora de Publicaci&oacute;n',
-    'default' => $album['Album']['published_time'],
+	'label' => 'Hora de Publicaci&oacute;n',
+	'type' => 'text',
+	'default' => date("h:i A", strtotime($album['Album']['published_time'])),
 ));
 echo $this->Form->submit('Enviar', array('formnovalidate' => true));
 echo $this->Form->end();
 
 ?>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$("#AlbumPublishedDate").datepicker({dateFormat:"yy-mm-dd"});
+	});
+</script>

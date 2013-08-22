@@ -1,4 +1,4 @@
-<h3>Agregar Fotos</h3>
+<h4>Agregar Fotos</h4>
 <?php
 echo $this->Form->create('Photo', array('type'=>'file'));
 echo $this->Form->input('album_id', array(

@@ -4,7 +4,7 @@ class AlbumController extends AppController {
 
     public $components = array('Session');
 
-    public $helpers = array('Paginator', 'Js');
+    public $helpers = array('Paginator', 'Js', 'Timeoptions');
 
     public $paginate = array(
         'limit' => '10',
@@ -25,7 +25,7 @@ class AlbumController extends AppController {
 	public function add() {
 		if (!empty($this->data)) {
 			if ($this->Album->save($this->data)) {
-				$this->Session->setFlash('Se agreg&oacute; el nuevo album!', 'default', array('class'=>'message success-message'));
+				$this->Session->setFlash('Se agreg&oacute; el nuevo album!', 'default', array('class'=>'alert alert-success'));
 
 				return $this->redirect('/album/index');
 			}
@@ -44,7 +44,7 @@ class AlbumController extends AppController {
 			$album = $this->Album->findById($id);
 
 			if (empty($album)) {
-				$this->Session->setFlash('Numero de ID invalido!');
+				$this->Session->setFlash('Numero de ID invalido!', 'default', array('class'=>'alert alert-error'));
 
 				return $this->redirect('/album/index');
 			}
@@ -52,7 +52,7 @@ class AlbumController extends AppController {
 			$this->set('album', $album);
 		} else {
 			if ($this->Album->save($this->data)) {
-				$this->Session->setFlash('Se modific&oacute; el album con exito!', 'default', array('class'=>'message success-message'));
+				$this->Session->setFlash('Se modific&oacute; el album con exito!', 'default', array('class'=>'alert alert-success'));
 
 				return $this->redirect('/album/index');
 			}
@@ -72,11 +72,11 @@ class AlbumController extends AppController {
 
 		if (!empty($album)) {
 			$this->Album->delete($id);
-			$this->Session->setFlash('Se borr&oacute; la secci&oacute;n con exito!', 'default', array('class'=>'message success-message'));
+			$this->Session->setFlash('Se borr&oacute; la secci&oacute;n con exito!', 'default', array('class'=>'alert alert-success'));
 
 			return $this->redirect('/album/index');
 		} else {
-			$this->Session->setFlash('No existe un album con este ID');
+			$this->Session->setFlash('No existe un album con este ID', 'default', array('class'=>'alert alert-error'));
 
 			return $this->redirect('/album/index');
 		}
