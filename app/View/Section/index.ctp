@@ -24,8 +24,8 @@
 					<?php echo $section['Section']['name']; ?>
 				</td>
 				<td>
-					<a href="/section/edit/<?php echo $section['Section']['id']; ?>"><i class="icon-edit"></i></a> |
-					<i class="icon-remove-sign delete" onclick="borrar(<?php echo $section['Section']['id']; ?>)"></i>
+					<a href="/section/edit/<?php echo $section['Section']['id']; ?>"><i class="icon-edit" data-toggle="tooltip" title="Editar Sección"></i></a> |
+					<i class="icon-remove-sign delete" onclick="borrar(<?php echo $section['Section']['id']; ?>)" data-toggle="tooltip" title="Borrar Sección"></i>
 				</td>
 			</tr>
 		<?php } ?>
@@ -37,7 +37,7 @@
 
 <script type="text/javascript">
 	$(document).ready(function() {
-
+        $("[data-toggle=tooltip]").tooltip({placement: 'right'});
 	});
 
 	function borrar(section_id) {

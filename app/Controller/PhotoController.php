@@ -30,10 +30,6 @@ class PhotoController extends AppController {
 		$this->set('album_id', $id);
 
 		if (!empty($this->data)) {
-			echo '<pre>';
-			//print_r($this->data);
-			//echo '</pre>';
-			//exit();
 			if ($this->Photo->uploadPhotos($this->data)) {
 				$this->Session->setFlash('Se agregaron las nuevas fotos al album!', 'default', array('class'=>'alert alert-success'));
 

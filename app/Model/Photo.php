@@ -61,11 +61,12 @@ class Photo extends AppModel {
 
 				$this->create($photo);
 				if (!$this->save($photo)) {
-					error_log(__CLASS__.'/'.__FUNCTION__.' couldnt save data');
+					error_log(__CLASS__.'/'.__FUNCTION__.' could not save data');
 					return false;
 				}
 			}
 		}
+
 		return true;
 	}
 }

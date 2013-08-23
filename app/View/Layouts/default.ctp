@@ -38,6 +38,7 @@ $cakeDescription = __d('cake_dev', 'WATACMS');
 	//echo $this->Html->css('cake.generic');
 	echo $this->Html->css('bootstrap');
 	echo $this->Html->css('bootstrap.min');
+    echo $this->Html->css('bootstrap-fileupload.min');
 	echo $this->Html->css('bootstrap-responsive');
 	echo $this->Html->css('flush.less?', 'stylesheet/less');
 	echo $this->Html->css('watacms');
@@ -48,6 +49,7 @@ $cakeDescription = __d('cake_dev', 'WATACMS');
 	echo $this->Html->script('jquery-1.10.0.min');
 	echo $this->Html->script('jquery-ui-1.10.3.custom.min');
 	echo $this->Html->script('bootstrap');
+    echo $this->Html->script('bootstrap-fileupload.min');
 	echo $this->Html->script('cakebootstrap');
 	?>
 	<link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
@@ -89,7 +91,7 @@ $cakeDescription = __d('cake_dev', 'WATACMS');
 					</a>
 				</li>
 				<li>
-					<a href="/">
+					<a href="/pic">
 						<i class="icon-camera-retro icon-2x"></i><br>
 						Pic
 					</a>
