@@ -133,10 +133,10 @@ $cakeDescription = __d('cake_dev', 'WATACMS');
 				<?php
 					if($this->params['controller'] != "pages"){
 						if ($this->params['action'] != 'index') {
-							$this->Html->addCrumb($this->params['controller'], '/'.$this->params['controller']."/");
-							$this->Html->addCrumb($this->params['action']);
+							$this->Html->addCrumb(ucfirst($this->params['controller']), '/'.$this->params['controller']."/");
+							$this->Html->addCrumb(ucfirst($this->params['action']));
 						} else {
-							$this->Html->addCrumb($this->params['controller']);
+							$this->Html->addCrumb(ucfirst($this->params['controller']));
 						}
 					}
 

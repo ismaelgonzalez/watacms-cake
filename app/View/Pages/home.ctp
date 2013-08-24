@@ -6,7 +6,7 @@
 		Article
 	</li>
 	<li>
-		Pic
+		<a href="/pic">Pic</a>
 	</li>
 	<li>
 		Poll
