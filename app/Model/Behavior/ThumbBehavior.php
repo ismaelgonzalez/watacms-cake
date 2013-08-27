@@ -20,9 +20,16 @@ class ThumbBehavior extends ModelBehavior
 
 		if (!is_file($files_dir . DS .$thumbs_dir . DS . $filename)) {
 			list($width, $height) = getimagesize($files_dir . DS . $filename);
-			$canvas = imagecreatetruecolor($thumbs_width, $thumbs_height);
-			$image = imagecreatefromjpeg($files_dir . $filename);
-			imagecopyresampled($canvas, $image, 0, 0, 0, 0, $thumbs_width, $thumbs_height, $width, $height);
+
+            $v_fact = $thumbs_height / $height;
+            $h_fact = $thumbs_width / $width;
+            $im_fact = min($v_fact, $h_fact);
+            $new_height = $height * $im_fact;
+            $new_width = $width * $im_fact;
+
+            $canvas = imagecreatetruecolor($new_width, $new_height);
+			$image = imagecreatefromjpeg($files_dir . DS . $filename);
+            imagecopyresampled($canvas, $image, 0, 0, 0, 0, $new_width, $new_height, $width, $height);
 			if (!is_dir($files_dir . DS . $thumbs_dir)) {
 				mkdir($files_dir . DS . $thumbs_dir);
 			}

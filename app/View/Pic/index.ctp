@@ -23,7 +23,7 @@
 			<?php echo $pic['Pic']['id']; ?>
 		</td>
 		<td>
-			<img src="/files/timthumb.php?src=/fotos/pics/<?php echo $pic['Pic']['pic']; ?>&w=80&h=60" />
+            <img src="/fotos/pics/thumbs/<?php echo $pic['Pic']['pic']; ?>" />
 		</td>
 		<td>
 			<?php echo $pic['Section']['name']; ?>

@@ -53,11 +53,24 @@ class PicController extends AppController {
 
 			$this->set('pic', $pic);
 		} else {
-			if ($this->Pic->save($this->data)) {
-				$this->Session->setFlash('Se modific&oacute; el pic con exito!', 'default', array('class'=>'alert alert-success'));
+            //echo '<pre>'; print_r($this->data); exit();
+            if ($this->data['Pic']['pic']['error'] == 0) {
+                if ($this->Pic->uploadPic($this->data)) {
+                    $this->Session->setFlash('Se agreg&oacute; el nuevo Pic!', 'default', array('class'=>'alert alert-success'));
 
-				return $this->redirect('/pic/index');
-			}
+                    return $this->redirect('/pic/index');
+                } else {
+                    $this->Session->setFlash('Hubo un error al subir la imagen :S', 'default', array('class'=>'alert alert-error'));
+                }
+            }else {
+                if ($this->Pic->editDataNoPic($this->data)) {
+                    $this->Session->setFlash('Se modific&oacute; el pic con exito!', 'default', array('class'=>'alert alert-success'));
+
+                    return $this->redirect('/pic/index');
+                } else {
+                    $this->Session->setFlash('No se pudieron guardar los cambios :S', 'default', array('class'=>'alert alert-error'));
+                }
+            }
 		}
 
 		$sections = $this->Section->find('list');

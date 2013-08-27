@@ -46,8 +46,6 @@ class Pic extends AppModel {
 					if(!move_uploaded_file($pics[$this->alias]['pic']['tmp_name'], $pics_dir.DS.$filename) || !$this->make_thumb($filename, $options=array('files_dir' => $pics_dir)) ) {
 						return false;
 					}
-					/*$this->make_thumb($filename, $options=array('files_dir' => $pics_dir));
-					exit();*/
 				}
 
 				$pic = array(
@@ -64,10 +62,28 @@ class Pic extends AppModel {
 					error_log(__CLASS__.'/'.__FUNCTION__.' could not save data');
 					return false;
 				}
-			}
+		}
 
 
 		return true;
 
 	}
+
+    public function editDataNoPic($data) {
+        $pic = array(
+            $this->alias => array(
+                'id' => $data[$this->alias]['id'],
+                'section_id' => $data[$this->alias]['section_id'],
+                'title' => $data[$this->alias]['title'],
+                'blurb' => $data[$this->alias]['blurb'],
+            )
+        );
+
+        if (!$this->save($pic)) {
+            error_log(__CLASS__.'/'.__FUNCTION__.' could not save data');
+            return false;
+        }
+
+        return true;
+    }
 }
