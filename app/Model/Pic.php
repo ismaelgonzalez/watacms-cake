@@ -2,6 +2,8 @@
 class Pic extends AppModel {
     public $useTable = 'pic';
 
+	public $actsAs = array('Thumb');
+
 	public $belongsTo = array(
 		'Section'
 	);
@@ -41,9 +43,11 @@ class Pic extends AppModel {
 				}
 
 				if ($typeOK) {	//upload
-					if(!move_uploaded_file($pics[$this->alias]['pic']['tmp_name'], $pics_dir.DS.$filename)) {
+					if(!move_uploaded_file($pics[$this->alias]['pic']['tmp_name'], $pics_dir.DS.$filename) || !$this->make_thumb($filename, $options=array('files_dir' => $pics_dir)) ) {
 						return false;
 					}
+					/*$this->make_thumb($filename, $options=array('files_dir' => $pics_dir));
+					exit();*/
 				}
 
 				$pic = array(

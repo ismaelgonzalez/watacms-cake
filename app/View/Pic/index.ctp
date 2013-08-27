@@ -23,7 +23,7 @@
 			<?php echo $pic['Pic']['id']; ?>
 		</td>
 		<td>
-			<img data-src="/js/holder.js/80x60" style="width: 80px; height: 60px;" src="/fotos/pics/<?php echo $pic['Pic']['pic']; ?>" />
+			<img src="/files/timthumb.php?src=/fotos/pics/<?php echo $pic['Pic']['pic']; ?>&w=80&h=60" />
 		</td>
 		<td>
 			<?php echo $pic['Section']['name']; ?>
@@ -42,16 +42,6 @@
 <?php } ?>
 
 <?php echo $this->Paginator->numbers(); ?>
-                         <ul class="thumbnails">
-							 <li class="span4">
-								 <div class="thumbnail">
-									 <img data-src="/js/holder.js/300x200" alt="">
-									 <h3>Thumbnail label</h3>
-									 <p>Thumbnail caption...</p>
-								 </div>
-							 </li>
-							 ...
-						 </ul>
 
 <script type="text/javascript">
 	$(document).ready(function() {
