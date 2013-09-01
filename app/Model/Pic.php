@@ -18,6 +18,32 @@ class Pic extends AppModel {
 			'message' => 'La sección del pic es requerida!',
 		),
 	);
+
+	public function beforeDelete(){
+		App::uses('File', 'Utility');
+
+		$data = $this->find('first', array(
+			'conditions' => array(
+				'Pic.id' => $this->id
+			),
+		));
+		$file = new File(WWW_ROOT . 'fotos/pics/'.$data[$this->alias]['pic'], false, 0777);
+		$thumb = new File(WWW_ROOT . 'fotos/pics/thumbs/'.$data[$this->alias]['pic'], false, 0777);
+
+
+		if(is_file(WWW_ROOT . 'fotos/pics/'.$data[$this->alias]['pic'])){
+			echo '<br>file exists';
+		}
+		if(is_file(WWW_ROOT . 'fotos/pics/thumbs/'.$data[$this->alias]['pic'])){
+			echo '<br>thumb exists';
+		}
+
+		if($file->delete() && $thumb->delete()) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 	
 	public function uploadPic($data){
 		$pics = $data;
@@ -29,6 +55,8 @@ class Pic extends AppModel {
 		}
 
 		$allowed_types = array('image/gif','image/jpeg','image/pjpeg','image/png');
+
+		$filename = false; //in case there is no file to be uploaded we return false.
 
 		if ($pics[$this->alias]['pic']['name'] != '' && $pics[$this->alias]['pic']['error'] == 0) {	//make sure there is a file to upload and there is no error
 				$filename = str_replace(' ', '_', $pics[$this->alias]['pic']['name']);
@@ -47,25 +75,10 @@ class Pic extends AppModel {
 						return false;
 					}
 				}
-
-				$pic = array(
-					$this->alias => array(
-						'section_id' => $pics[$this->alias]['section_id'],
-						'title' => $pics[$this->alias]['title'],
-						'blurb' => $pics[$this->alias]['blurb'],
-						'pic' => $filename,
-					)
-				);
-
-				$this->create($pic);
-				if (!$this->save($pic)) {
-					error_log(__CLASS__.'/'.__FUNCTION__.' could not save data');
-					return false;
-				}
 		}
 
 
-		return true;
+		return $filename;
 
 	}
 

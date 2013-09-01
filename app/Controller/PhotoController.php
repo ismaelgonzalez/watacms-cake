@@ -39,4 +39,62 @@ class PhotoController extends AppController {
 			}
 		}
 	}
+
+	public function edit($id) {
+		if (empty($this->data)) {
+			$foto = $this->Photo->findById($id);
+
+			if (empty($foto)) {
+				$this->Session->setFlash('Numero de ID invalido!', 'default', array('class'=>'alert alert-error'));
+
+				return $this->redirect('/album/index');
+			}
+
+			$this->set('foto', $foto);
+		} else {
+			if ($this->data['Photo']['pic']['error'] == 0) {
+				$filename = $this->Photo->uploadPhotos($this->data);
+				if ($filename) {
+					$pic_edit = array(
+						'Photo' => array(
+							'id' => $this->data['Photo']['id'],
+							'album_id' => $this->data['Photo']['album_id'],
+							'title' => $this->data['Photo']['title'],
+							'blurb' => $this->data['Photo']['blurb'],
+							'pic' => $filename,
+						)
+					);
+
+					if (!$this->Photo->save($pic_edit)) {
+						$this->Session->setFlash('No se pudieron guardar los cambios :S', 'default', array('class'=>'alert alert-error'));
+						return false;
+					}
+					$this->Session->setFlash('Se modific&oacute; la foto con exito!', 'default', array('class'=>'alert alert-success'));
+
+					return $this->redirect('/album/index');
+				} else {
+					$this->Session->setFlash('Hubo un error al subir la imagen :S', 'default', array('class'=>'alert alert-error'));
+				}
+			}else {
+				if ($this->Photo->editDataNoPhoto($this->data)) {
+					$this->Session->setFlash('Se modific&oacute; la foto con exito!', 'default', array('class'=>'alert alert-success'));
+
+					return $this->redirect('/album/index');
+				} else {
+					$this->Session->setFlash('No se pudieron guardar los cambios :S', 'default', array('class'=>'alert alert-error'));
+				}
+			}
+		}
+
+		$albums = $this->Album->find('list');
+
+		$this->set('albums', $albums);
+		$this->set('title_for_layout', 'Editar Foto');
+
+		return $this->render();
+	}
+
+	public function delete($id) {
+		$this->autoRender = false;
+	}
 }

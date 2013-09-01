@@ -3,7 +3,7 @@ class Photo extends AppModel {
 	public $useTable = 'photo';
 
 	public $belongsTo = array(
-		'album'
+		'Album'
 	);
 
 	public $validate = array(
@@ -65,6 +65,24 @@ class Photo extends AppModel {
 					return false;
 				}
 			}
+		}
+
+		return true;
+	}
+
+	public function editDataNoPhoto($data) {
+		$foto = array(
+			$this->alias => array(
+				'id' => $data[$this->alias]['id'],
+				'album_id' => $data[$this->alias]['album_id'],
+				'title' => $data[$this->alias]['title'],
+				'blurb' => $data[$this->alias]['blurb'],
+			)
+		);
+
+		if (!$this->save($foto)) {
+			error_log(__CLASS__.'/'.__FUNCTION__.' could not save data');
+			return false;
 		}
 
 		return true;

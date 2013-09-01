@@ -1,6 +1,6 @@
 <?php
 class AlbumController extends AppController {
-    public $uses = array('Album', 'Section');
+    public $uses = array('Album', 'Section', 'Photo');
 
     public $components = array('Session');
 
@@ -83,7 +83,10 @@ class AlbumController extends AppController {
 	}
 
 	public function view($id){
-		$this->autoRender = false;
-		echo "we're gonna view the photos from album $id here";
+		$album = $this->Album->findById($id);
+		$fotos = $this->Photo->findAllByAlbumId($id);
+
+		$this->set('album', $album);
+		$this->set('fotos', $fotos);
 	}
 }

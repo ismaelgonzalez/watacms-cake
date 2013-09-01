@@ -19,12 +19,27 @@ class PicController extends AppController {
         $this->set('title_for_layout', 'Lista de Ultimas fotos');
         $this->set('pics', $pics);
 
-        return $this->render();
+		return $this->render();
     }
 
 	public function add(){
 		if (!empty($this->data)) {
-			if ($this->Pic->uploadPic($this->data)) {
+			$filename = $this->Pic->uploadPic($this->data);
+			if ($filename) {
+				$pic = array(
+					'Pic' => array(
+						'section_id' => $this->data['Pic']['section_id'],
+						'title' => $this->data['Pic']['title'],
+						'blurb' => $this->data['Pic']['blurb'],
+						'pic' => $filename,
+					)
+				);
+
+				if (!$this->Pic->save($pic)) {
+					$this->Session->setFlash('No se pudieron guardar los cambios :S', 'default', array('class'=>'alert alert-error'));
+					return false;
+				}
+
 				$this->Session->setFlash('Se agreg&oacute; el nuevo Pic!', 'default', array('class'=>'alert alert-success'));
 
 				return $this->redirect('/pic/index');
@@ -53,10 +68,24 @@ class PicController extends AppController {
 
 			$this->set('pic', $pic);
 		} else {
-            //echo '<pre>'; print_r($this->data); exit();
             if ($this->data['Pic']['pic']['error'] == 0) {
-                if ($this->Pic->uploadPic($this->data)) {
-                    $this->Session->setFlash('Se agreg&oacute; el nuevo Pic!', 'default', array('class'=>'alert alert-success'));
+				$filename = $this->Pic->uploadPic($this->data);
+                if ($filename) {
+					$pic_edit = array(
+						'Pic' => array(
+							'id' => $this->data['Pic']['id'],
+							'section_id' => $this->data['Pic']['section_id'],
+							'title' => $this->data['Pic']['title'],
+							'blurb' => $this->data['Pic']['blurb'],
+							'pic' => $filename,
+						)
+					);
+
+					if (!$this->Pic->save($pic_edit)) {
+						$this->Session->setFlash('No se pudieron guardar los cambios :S', 'default', array('class'=>'alert alert-error'));
+						return false;
+					}
+                    $this->Session->setFlash('Se modific&oacute; el pic con exito!', 'default', array('class'=>'alert alert-success'));
 
                     return $this->redirect('/pic/index');
                 } else {
@@ -80,4 +109,26 @@ class PicController extends AppController {
 
 		return $this->render();
 	}
+
+	public function delete($id) {
+		$this->autoRender = false;
+		$pic = $this->Pic->findById($id);
+
+		if (!empty($pic)) {
+			if ($this->Pic->delete($id)) {
+				$this->Session->setFlash('Se borr&oacute; el Pic con exito!', 'default', array('class'=>'alert alert-success'));
+
+				return $this->redirect('/pic/index');
+			} else {
+				$this->Session->setFlash('No se pudo borrar este pic :(', 'default', array('class'=>'alert alert-error'));
+
+				return $this->redirect('/pic/index');
+			}
+		} else {
+			$this->Session->setFlash('No existe un Pic con este ID :@', 'default', array('class'=>'alert alert-error'));
+
+			return $this->redirect('/pic/index');
+		}
+	}
+
 }

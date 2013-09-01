@@ -31,6 +31,9 @@
 					<a href="/album/edit/<?php echo $album['Album']['id']; ?>"><i class="icon-edit" data-toggle="tooltip" title="Editar Album"></i></a> |
 					<i class="icon-remove-sign delete" onclick="borrar(<?php echo $album['Album']['id']; ?>)" data-toggle="tooltip" title="Borrar Album"></i> |
 					<a href="/photo/add/<?php echo $album['Album']['id']; ?>"><i class="icon-camera" data-toggle="tooltip" title="Agregar Foto"></i></a>
+					<?php //if(sizeof($album)) ?>
+					|
+					<a href="/album/view/<?php echo $album['Album']['id']; ?>"><i class="icon-picture" data-toggle="tooltip" title="Ver fotos"></i></a>
 				</td>
 			</tr>
 		<?php } ?>

@@ -8,15 +8,6 @@ class ThumbBehavior extends ModelBehavior
 		$thumbs_height = isset($options['height']) ? intval($options['height']) : 75;
 		$files_dir = $options['files_dir'];
 		$thumbs_dir = "thumbs";
-		/*echo '<pre>';
-		var_dump($filename);
-		var_dump($options);
-		var_dump($thumbs_dir);
-		var_dump($files_dir);
-		var_dump($thumbs_height);
-		var_dump($thumbs_width);
-		var_dump($files_dir . DS .$thumbs_dir . DS . $filename);
-		exit();*/
 
 		if (!is_file($files_dir . DS .$thumbs_dir . DS . $filename)) {
 			list($width, $height) = getimagesize($files_dir . DS . $filename);
