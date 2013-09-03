@@ -52,23 +52,10 @@ class PhotoController extends AppController {
 
 			$this->set('foto', $foto);
 		} else {
-			if ($this->data['Photo']['pic']['error'] == 0) {
-				$filename = $this->Photo->uploadPhotos($this->data);
-				if ($filename) {
-					$pic_edit = array(
-						'Photo' => array(
-							'id' => $this->data['Photo']['id'],
-							'album_id' => $this->data['Photo']['album_id'],
-							'title' => $this->data['Photo']['title'],
-							'blurb' => $this->data['Photo']['blurb'],
-							'pic' => $filename,
-						)
-					);
 
-					if (!$this->Photo->save($pic_edit)) {
-						$this->Session->setFlash('No se pudieron guardar los cambios :S', 'default', array('class'=>'alert alert-error'));
-						return false;
-					}
+			if ($this->data['Photo']['pic']['error'] == 0) {
+				$filename = $this->Photo->editPhoto($this->data);
+				if ($filename) {
 					$this->Session->setFlash('Se modific&oacute; la foto con exito!', 'default', array('class'=>'alert alert-success'));
 
 					return $this->redirect('/album/index');
@@ -96,5 +83,22 @@ class PhotoController extends AppController {
 
 	public function delete($id) {
 		$this->autoRender = false;
+        $photo = $this->Photo->findById($id);
+
+        if (!empty($photo)) {
+            if ($this->Photo->delete($id)) {
+                $this->Session->setFlash('Se borr&oacute; la foto con exito!', 'default', array('class'=>'alert alert-success'));
+
+                return $this->redirect('/album/view/'.$photo['Photo']['album_id']);
+            } else {
+                $this->Session->setFlash('No se pudo borrar esta foto :(', 'default', array('class'=>'alert alert-error'));
+
+                return $this->redirect('/album/view/'.$photo['Photo']['album_id']);
+            }
+        } else {
+            $this->Session->setFlash('No existe una foto con este ID :@', 'default', array('class'=>'alert alert-error'));
+
+            return $this->redirect('/album/view/'.$photo['Photo']['album_id']);
+        }
 	}
 }

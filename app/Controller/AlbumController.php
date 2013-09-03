@@ -7,6 +7,9 @@ class AlbumController extends AppController {
     public $helpers = array('Paginator', 'Js', 'Timeoptions');
 
     public $paginate = array(
+        'conditions' => array(
+            'status' => 'A',
+        ),
         'limit' => '10',
         'order' => array(
             'Album.id' => 'ASC'
@@ -71,8 +74,10 @@ class AlbumController extends AppController {
 		$album = $this->Album->findById($id);
 
 		if (!empty($album)) {
-			$this->Album->delete($id);
-			$this->Session->setFlash('Se borr&oacute; la secci&oacute;n con exito!', 'default', array('class'=>'alert alert-success'));
+			//$this->Album->delete($id);
+            $album['Album']['status'] = 'S';
+            $this->Album->save($album);
+			$this->Session->setFlash('Se borr&oacute; el album con exito!', 'default', array('class'=>'alert alert-success'));
 
 			return $this->redirect('/album/index');
 		} else {

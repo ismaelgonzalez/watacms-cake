@@ -51,7 +51,7 @@ class Pic extends AppModel {
 		$pics_dir = WWW_ROOT.'fotos'.DS.'pics';
 
 		if(!is_dir($pics_dir)) {
-			mkdir($pics_dir);
+			mkdir($pics_dir, 0775);
 		}
 
 		$allowed_types = array('image/gif','image/jpeg','image/pjpeg','image/png');

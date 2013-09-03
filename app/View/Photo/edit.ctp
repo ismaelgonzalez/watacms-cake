@@ -31,7 +31,7 @@
 
 	echo $this->Form->submit('Enviar', array('formnovalidate' => true));
 	?>
-	<p style="margin-top: 10px;"><button href="/album/view/<?php echo $foto["Photo"]["album_id"]; ?>" class="btn btn-info">Regresar</button></p>
+	<p style="margin-top: 10px;"><a href="/album/view/<?php echo $foto["Photo"]["album_id"]; ?>" class="btn btn-info">Regresar</a></p>
 	<?php
 	echo $this->Form->end();
 	?>

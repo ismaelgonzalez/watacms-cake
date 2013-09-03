@@ -22,7 +22,7 @@ class ThumbBehavior extends ModelBehavior
 			$image = imagecreatefromjpeg($files_dir . DS . $filename);
             imagecopyresampled($canvas, $image, 0, 0, 0, 0, $new_width, $new_height, $width, $height);
 			if (!is_dir($files_dir . DS . $thumbs_dir)) {
-				mkdir($files_dir . DS . $thumbs_dir);
+				mkdir($files_dir . DS . $thumbs_dir, 0775);
 			}
 			if (imagejpeg($canvas, $files_dir . DS . $thumbs_dir . DS . $filename, 100)) {
 				return true;
