@@ -44,6 +44,7 @@ class AlbumController extends AppController {
 
 	public function edit($id) {
 		if (empty($this->data)) {
+			$this->Album->recursive = -1;
 			$album = $this->Album->findById($id);
 
 			if (empty($album)) {
@@ -71,10 +72,11 @@ class AlbumController extends AppController {
 
 	public function delete($id) {
 		$this->autoRender = false;
+
+		$this->Album->recursive = -1;
 		$album = $this->Album->findById($id);
 
 		if (!empty($album)) {
-			//$this->Album->delete($id);
             $album['Album']['status'] = 'S';
             $this->Album->save($album);
 			$this->Session->setFlash('Se borr&oacute; el album con exito!', 'default', array('class'=>'alert alert-success'));

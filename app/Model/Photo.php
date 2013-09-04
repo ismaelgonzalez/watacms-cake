@@ -31,7 +31,7 @@ class Photo extends AppModel {
         $file = new File(WWW_ROOT . 'fotos/'.$data[$this->alias]['album_id'].'/'.$data[$this->alias]['pic'], false, 0777);
         $thumb = new File(WWW_ROOT . 'fotos/'.$data[$this->alias]['album_id'].'/thumbs/'.$data[$this->alias]['pic'], false, 0777);
 
-        /*if(is_file(WWW_ROOT . 'fotos/'.$data[$this->alias]['album_id'].'/'.$data[$this->alias]['pic'])){
+		/*if(is_file(WWW_ROOT . 'fotos/'.$data[$this->alias]['album_id'].'/'.$data[$this->alias]['pic'])){
             echo '<br>file exists';
         }
         if(is_file(WWW_ROOT . 'fotos/'.$data[$this->alias]['album_id'].'/thumbs/'.$data[$this->alias]['pic'])){

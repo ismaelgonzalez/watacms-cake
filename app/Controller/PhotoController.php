@@ -83,6 +83,7 @@ class PhotoController extends AppController {
 
 	public function delete($id) {
 		$this->autoRender = false;
+		$this->Photo->recursive = -1;
         $photo = $this->Photo->findById($id);
 
         if (!empty($photo)) {
