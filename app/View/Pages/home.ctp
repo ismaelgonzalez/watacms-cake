@@ -9,7 +9,7 @@
 		<a href="/pic">Pic</a>
 	</li>
 	<li>
-		Poll
+		<a href="/poll">Poll</a>
 	</li>
 	<li>
 		<a href="/section">Section</a>

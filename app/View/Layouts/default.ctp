@@ -97,7 +97,7 @@ $cakeDescription = __d('cake_dev', 'WATACMS');
 					</a>
 				</li>
 				<li>
-					<a href="/">
+					<a href="/poll">
 						<i class="icon-list-ol icon-2x"></i><br>
 						Poll
 					</a>
