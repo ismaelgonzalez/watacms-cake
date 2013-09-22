@@ -6,20 +6,17 @@
 
 	echo $this->Form->input('title', array('label' => 'T&iacute;tulo'));
 
-	//poll answers
-	echo $this->Form->input('PollAnswer.answer1', array('label' => 'Respuesta'));
-	echo $this->Form->input('PollAnswer.answer2', array('label' => 'Respuesta'));
-	echo $this->Form->input('PollAnswer.answer3', array('label' => 'Respuesta'));
-	echo $this->Form->input('PollAnswer.answer4', array('label' => 'Respuesta'));
-	echo $this->Form->input('PollAnswer.answer5', array('label' => 'Respuesta'));
-
+	echo "<p><a id=\"addAnswer\" class=\"btn btn-success\"><i class=\"icon-plus\"></i></a> Agregar Respuesta a la Encuesta</p>";
 
 	echo $this->Form->submit('Enviar', array('formnovalidate' => true));
 	echo $this->Form->end();
 	?>
 </div>
+
 <script type="text/javascript">
 	$(document).ready(function() {
-		$(".fileupload").fileupload();
+		$("#addAnswer").click(function(){
+			$(this).before("<div class='clearfix'><label for='PollAnswerAnswer'>Respuesta</label><div class='input added'><input name='answer[]' type='text' id='PollAnswerAnswer'></div></div>");
+		});
 	});
 </script>

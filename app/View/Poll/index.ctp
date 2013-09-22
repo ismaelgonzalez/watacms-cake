@@ -26,8 +26,7 @@
 		<td>
 			<a href="/poll/edit/<?php echo $poll['Poll']['id']; ?>"><i class="icon-edit" data-toggle="tooltip" title="Editar Encuesta"></i></a> |
 			<i class="icon-remove-sign delete" onclick="borrar(<?php echo $poll['Poll']['id']; ?>)" data-toggle="tooltip" title="Borrar Encuesta"></i> |
-			<a href="/poll_answer/edit/<?php echo $poll['Poll']['id']; ?>"><i class="icon-tasks" data-toggle="tooltip" title="Editar Respuestas"></i></a> |
-			<a href="/poll_answer/add/<?php echo $poll['Poll']['id']; ?>"><i class="icon-plus-sign" data-toggle="tooltip" title="Agregar Respuestas"></i></a>
+			<a href="/poll_answer/edit/<?php echo $poll['Poll']['id']; ?>"><i class="icon-tasks" data-toggle="tooltip" title="Editar Respuestas"></i></a>
 		</td>
 	</tr>
 		<?php } ?>

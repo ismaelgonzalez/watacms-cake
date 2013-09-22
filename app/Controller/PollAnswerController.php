@@ -29,4 +29,18 @@ class PollAnswerController extends AppController {
 		}
 	}
 
+	public function delete($answer_id){
+		$this->autoRender = false;
+
+		$poll_answer = $this->PollAnswer->findById($answer_id);
+
+		if (empty($poll_answer)) {
+			return false;
+		}
+
+		$this->PollAnswer->delete($answer_id);
+
+		return true;
+	}
+
 }

@@ -27,24 +27,22 @@ class PollController extends AppController {
 
 	public function add() {
 		if (!empty($this->data)) {
-			$poll_answer = $this->data['PollAnswer'];
+			$poll_answer = $this->data['answer'];
 			if ($this->Poll->save($this->data)) {
 				$poll_id = $this->Poll->getLastInsertID();
 				foreach ($poll_answer as $answer) {
-					if ($answer != '') {
-						$pa = array(
-							'PollAnswer' => array(
-								'answer' => $answer,
-								'poll_id' => $poll_id,
-							),
-						);
+					$pa = array(
+						'PollAnswer' => array(
+							'answer' => $answer,
+							'poll_id' => $poll_id,
+						),
+					);
 
-						$this->PollAnswer->create();
-						if (!$this->PollAnswer->save($pa)) {
-							$this->Session->setFlash('Error al guardar la respuesta a la encuesta!:S', 'default', array('class'=>'alert alert-error'));
+					$this->PollAnswer->create();
+					if (!$this->PollAnswer->save($pa)) {
+						$this->Session->setFlash('Error al guardar la respuesta a la encuesta!:S', 'default', array('class'=>'alert alert-error'));
 
-							return $this->redirect('/poll/index');
-						}
+						return $this->redirect('/poll/index');
 					}
 				}
 				$this->Session->setFlash('Se agreg&oacute; la nueva encuesta!', 'default', array('class'=>'alert alert-success'));

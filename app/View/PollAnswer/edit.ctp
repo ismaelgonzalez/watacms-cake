@@ -15,3 +15,21 @@
 	?>
 	<a href="/poll/index" class="btn btn-info">Regresar</a>
 </div>
+
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		$("[data-toggle=tooltip]").tooltip({placement: 'right'});
+	});
+
+	function borrarRespuesta(answer_id) {
+		$.ajax({
+			type: "POST",
+			url: '/poll_answer/delete/'+answer_id
+		}).done(function(msg){
+				if (msg) {
+					$('#PollAnswerAnswer'+answer_id).parent().parent().hide();
+				}
+			});
+	}
+</script>
