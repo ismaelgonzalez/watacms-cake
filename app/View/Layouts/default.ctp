@@ -109,7 +109,7 @@ $cakeDescription = __d('cake_dev', 'WATACMS');
 					</a>
 				</li>
 				<li>
-					<a href="/">
+					<a href="/tags">
 						<i class="icon-tags icon-2x"></i><br>
 						Tags
 					</a>
