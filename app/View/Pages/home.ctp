@@ -15,7 +15,7 @@
 		<a href="/section">Section</a>
 	</li>
 	<li>
-		Tags
+		<a href="/tags">Tags</a>
 	</li>
 	<li>
 		User
