@@ -121,7 +121,7 @@ $cakeDescription = __d('cake_dev', 'WATACMS');
 					</a>
 				</li>
 				<li>
-					<a href="/video/">
+					<a href="/videos">
 						<i class="icon-facetime-video icon-2x"></i><br>
 						Video
 					</a>

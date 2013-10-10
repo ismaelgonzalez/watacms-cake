@@ -21,6 +21,6 @@
 		User
 	</li>
 	<li>
-		Video
+		<a href="/videos">Videos</a>
 	</li>
 </ul>
