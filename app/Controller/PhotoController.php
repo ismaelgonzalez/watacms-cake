@@ -13,6 +13,14 @@ class PhotoController extends AppController {
 		),
 	);
 
+	public function isAuthorized($user){
+		if ($user) {
+			return true;
+		}
+
+		return false;
+	}
+
 	public function add($id = 0) {
 
 		if ($id > 0) {

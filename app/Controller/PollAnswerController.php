@@ -6,6 +6,14 @@ class PollAnswerController extends AppController {
 
 	public $helpers = array('Paginator', 'Js');
 
+	public function isAuthorized($user){
+		if ($user) {
+			return true;
+		}
+
+		return false;
+	}
+
 	public function index(){
 		$this->autoRender = false;
 		return $this->redirect('/poll/index');

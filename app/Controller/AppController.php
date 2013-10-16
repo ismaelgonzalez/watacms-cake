@@ -47,7 +47,7 @@ class AppController extends Controller {
 	public $uses = array('User');
 
 	public function beforeFilter() {
-		$this->Auth->allow(array('index', 'display'));
+		$this->Auth->allow(array('display', 'login'));
 
 		$session_user = $this->Session->read('Auth.User');
 
@@ -58,6 +58,7 @@ class AppController extends Controller {
 
 	public function isAuthorized($user) {
 		if (isset($user['role']) && $user['role'] === 'admin') {
+
 			return true;
 		}
 

@@ -17,6 +17,14 @@ class VideosController extends AppController
 		),
 	);
 
+	public function isAuthorized($user){
+		if ($user) {
+			return true;
+		}
+
+		return false;
+	}
+
 	public function index() {
 		$videos = $this->paginate('Video');
 

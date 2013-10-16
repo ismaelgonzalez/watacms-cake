@@ -14,6 +14,14 @@ class SectionController extends AppController {
 		),
 	);
 
+	public function isAuthorized($user){
+		if (!parent::isAuthorized($user)) {
+			$this->Session->setFlash('No tienes acceso a esta area!', 'default', array('class'=>'alert alert-error'));
+
+			return $this->redirect('/');
+		}
+	}
+
 	public function index() {
 		$sections = $this->paginate('Section');
 

@@ -16,6 +16,14 @@ class PollController extends AppController {
 		),
 	);
 
+	public function isAuthorized($user){
+		if ($user) {
+			return true;
+		}
+
+		return false;
+	}
+
 	public function index() {
 		$polls = $this->paginate('Poll');
 
