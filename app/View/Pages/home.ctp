@@ -18,7 +18,7 @@
 		<a href="/tags">Tags</a>
 	</li>
 	<li>
-		User
+		<a href="/users">Users</a>
 	</li>
 	<li>
 		<a href="/videos">Videos</a>

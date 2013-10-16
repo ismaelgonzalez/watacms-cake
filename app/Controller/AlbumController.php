@@ -16,6 +16,14 @@ class AlbumController extends AppController {
         ),
     );
 
+	public function isAuthorized($user){
+		if ($user) {
+			return true;
+		}
+
+		return false;
+	}
+
     public function index() {
         $albums = $this->paginate('Album');
 

@@ -13,6 +13,14 @@ class PicController extends AppController {
         ),
     );
 
+	public function isAuthorized($user){
+		if ($user) {
+			return true;
+		}
+
+		return false;
+	}
+
     public function index() {
         $pics = $this->paginate('Pic');
 
