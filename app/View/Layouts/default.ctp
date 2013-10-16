@@ -66,9 +66,14 @@ $cakeDescription = __d('cake_dev', 'WATACMS');
 			<a class="brand" href="/">WataCMS</a>
 			<div class="nav-collapse collapse">
 				<ul class="nav">
-					<li class="active"><a href="#">Home</a></li>
-					<li><a href="#about">Login</a></li>
-					<li><a href="#about">Hello User...</a></li>
+					<li class="active"><a href="/">Home</a></li>
+				<?php if ($this->Session->read('Auth.User')) { ?>
+					<li><a href="/users/edit/<?php echo $this->Session->read('Auth.User.id'); ?>">Bienvenido
+						<?php echo $this->Session->read('Auth.User.first_name').' '.$this->Session->read('Auth.User.last_name'); ?></a></li>
+					<li><a href="/users/logout">Logout</a></li>
+				<?php } else { ?>
+					<li><a href="/users/login">Login</a></li>
+				<?php } ?>
 				</ul>
 			</div><!--/.nav-collapse -->
 		</div>
@@ -115,15 +120,15 @@ $cakeDescription = __d('cake_dev', 'WATACMS');
 					</a>
 				</li>
 				<li>
-					<a href="/">
+					<a href="/users">
 						<i class="icon-user icon-2x"></i><br>
-						User
+						Users
 					</a>
 				</li>
 				<li>
 					<a href="/videos">
 						<i class="icon-facetime-video icon-2x"></i><br>
-						Video
+						Videos
 					</a>
 				</li>
 			</ul>
@@ -148,8 +153,8 @@ $cakeDescription = __d('cake_dev', 'WATACMS');
 						),
 						"Home");
 				?>
+				<?php echo $this->Session->flash('auth'); ?>
 				<?php echo $this->Session->flash(); ?>
-
 				<?php echo $this->fetch('content'); ?>
 			</div>
 		</div>

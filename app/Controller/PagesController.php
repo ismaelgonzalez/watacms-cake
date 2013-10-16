@@ -45,6 +45,14 @@ class PagesController extends AppController {
  */
 	public $uses = array();
 
+	public function isAuthorized($user){
+		if ($user) {
+			return true;
+		}
+
+		return false;
+	}
+
 /**
  * Displays a view
  *
@@ -52,6 +60,10 @@ class PagesController extends AppController {
  * @return void
  */
 	public function display() {
+		if (!$this->Auth->user('id')) {
+			return $this->redirect('/users/login');
+		}
+
 		$path = func_get_args();
 
 		$count = count($path);
