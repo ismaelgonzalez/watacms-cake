@@ -9,4 +9,8 @@ class Tag extends AppModel
 			'message' => 'El nombre del tag es requerido!',
 		),
 	);
+
+	public $hasMany = array(
+		'Tagged'
+	);
 }

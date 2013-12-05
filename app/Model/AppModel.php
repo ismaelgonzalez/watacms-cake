@@ -32,4 +32,14 @@ App::uses('Model', 'Model');
  * @package       app.Model
  */
 class AppModel extends Model {
+
+	//This is to get the current user in our models
+	function getCurrentUser() {
+		App::uses('CakeSession', 'Model/Datasource');
+		$Session = new CakeSession();
+
+		$user = $Session->read('Auth.User');
+
+		return $user;
+	}
 }

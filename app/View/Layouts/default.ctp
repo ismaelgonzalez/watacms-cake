@@ -35,6 +35,7 @@ $cakeDescription = __d('cake_dev', 'WATACMS');
 	<?php
 	echo $this->Html->meta('icon');
 
+	echo $this->Html->script('jquery-1.10.0.min'); //always load first
 	//echo $this->Html->css('cake.generic');
 	echo $this->Html->css('bootstrap');
 	echo $this->Html->css('bootstrap.min');
@@ -46,7 +47,7 @@ $cakeDescription = __d('cake_dev', 'WATACMS');
 	echo $this->fetch('meta');
 	echo $this->fetch('css');
 	echo $this->fetch('script');
-	echo $this->Html->script('jquery-1.10.0.min');
+
 	echo $this->Html->script('jquery-ui-1.10.3.custom.min');
 	echo $this->Html->script('bootstrap');
     echo $this->Html->script('bootstrap-fileupload.min');
@@ -90,7 +91,7 @@ $cakeDescription = __d('cake_dev', 'WATACMS');
 					</a>
 				</li>
 				<li>
-					<a href="/">
+					<a href="/articles">
 						<i class="icon-edit icon-2x"></i><br>
 						Article
 					</a>

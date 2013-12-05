@@ -20,6 +20,8 @@ class SectionController extends AppController {
 
 			return $this->redirect('/');
 		}
+
+		return true;
 	}
 
 	public function index() {
