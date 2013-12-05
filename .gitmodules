@@ -1,1 +1,4 @@
 
+[submodule "app/Plugin/TinyMCE"]
+	path = app/Plugin/TinyMCE
+	url = git://github.com/CakeDC/TinyMCE.git

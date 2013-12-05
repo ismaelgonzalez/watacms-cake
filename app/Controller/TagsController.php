@@ -10,7 +10,7 @@ class TagsController extends AppController
 	public $paginate = array(
 		'limit' => '10',
 		'order' => array(
-			'Tag.id' => 'ASC'
+			'Tag.tag' => 'ASC'
 		),
 	);
 
@@ -20,6 +20,8 @@ class TagsController extends AppController
 
 			return $this->redirect('/');
 		}
+
+		return true;
 	}
 
 	public function index() {
@@ -79,5 +81,25 @@ class TagsController extends AppController
 
 			return $this->redirect('/tags/index');
 		}
+	}
+
+	public function autocomplete() {
+		$this->autoRender = false;
+		$tag = $_REQUEST['term'];
+		$tags = $this->Tag->find('all', array(
+			'conditions' => array('Tag.tag LIKE' => $tag.'%')
+		));
+
+		$tag_return = array();
+
+		foreach($tags as $t){
+			$tag_return[] = array(
+				'value' => $t['Tag']['tag'],
+				'label' => $t['Tag']['tag'],
+				'id' => $t['Tag']['id']
+			);
+		}
+
+		echo json_encode($tag_return);
 	}
 }

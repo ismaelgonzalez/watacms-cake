@@ -3,7 +3,7 @@
 		<a href="/album">Album</a>
 	</li>
 	<li>
-		Article
+		<a href="/articles">Article</a>
 	</li>
 	<li>
 		<a href="/pic">Pic</a>
